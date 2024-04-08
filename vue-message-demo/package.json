@@ -1,0 +1,22 @@
+{
+  "name": "vue-message-demo",
+  "version": "1.0.0",
+  "main": "main.js",
+  "repository": "git@github.com:iygxv/demo.git",
+  "author": "sy <871772825@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "vite": "^5.2.8",
+    "vite-plugin-vue2": "^2.0.3",
+    "vue": "2.7",
+    "vue-template-compiler": "^2.7.16"
+  },
+  "devDependencies": {
+    "sass": "^1.74.1"
+  }
+}
