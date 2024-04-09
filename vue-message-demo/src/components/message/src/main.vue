@@ -1,9 +1,7 @@
 <template>
   <transition name="w-message-fade">
     <div :class="['w-message', `w-message-${type}`]" :style="positionStyle" v-show="visible">
-      <i :class="['w-icon-message', 'w-message-before-icon', `w-message-before-icon-${type}`]"></i>
       <div :class="['w-message__content']">{{ message }}</div>
-      <!-- <i class="w-icon-close2 w-message-close" @click="close"></i> -->
     </div>
   </transition>
 </template>
