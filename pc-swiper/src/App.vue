@@ -1,47 +1,54 @@
 <script setup>
-import { Swiper, SwiperSlide } from "swiper/vue";
+import { onBeforeMount, onMounted, ref } from "vue";
+import Swiper from "swiper";
 import "swiper/css";
-import { FreeMode, Mousewheel } from "swiper/modules";
-const modules = [FreeMode, Mousewheel];
+import { Mousewheel } from "swiper/modules";
+
+let swiperRef = ref(null); // swiper实例
+let swiperOptions = ref({}); // swiper配置项
+
+onBeforeMount(() => {
+  swiperOptions.value = {
+    initialSlide: 0, // 默认显示第0页
+    direction: "vertical", // 滑动方向
+    speed: 400, // 滑动速度
+    slidesPerView: "auto", // 滑动到贴合边缘
+    mousewheel: true, // 使用鼠标滚轮
+    observer: true, // 监听
+    observeParents: true, // 监听
+    allowTouchMove: false, //不允许触屏拖动
+  };
+});
+
+onMounted(() => {
+  Swiper.use([Mousewheel]);
+  const swiper = new Swiper(".swiper-container", swiperOptions.value);
+  swiperRef.value = swiper;
+});
+
 </script>
 
 <template>
   <div class="home-page">
-    <swiper
-      :direction="'vertical'"
-      :speed="300"
-      :mousewheel="true"
-      :modules="modules"
-      class="home-swiper"
-    >
-      <swiper-slide>
-        <div class="full-screen">第一屏</div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="full-screen">第二屏</div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="full-screen">第三屏</div>
-      </swiper-slide>
-      <swiper-slide>
-        <swiper
-          :freeMode="true"
-          :direction="'vertical'"
-          :speed="300"
-          :mousewheel="true"
-          :modules="modules"
-          :releaseOnEdges="true"
-          class="last-swiper"
-        >
-          <swiper-slide>
-            <div class="full-screen">第四屏</div>
-          </swiper-slide>
-          <!-- <swiper-slide class="last-swiper">
-            <div class="footer-container">页脚</div>
-          </swiper-slide> -->
-        </swiper>
-      </swiper-slide>
-    </swiper>
+    <div class="swiper swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide over">
+          <div class="full-screen">第一屏</div>
+        </div>
+        <div class="swiper-slide over">
+          <div class="full-screen">第二屏</div>
+        </div>
+        <div class="swiper-slide over">
+          <div class="full-screen">第三屏</div>
+        </div>
+        <div class="swiper-slide over">
+          <div class="full-screen">第四屏</div>
+        </div>
+        <div class="swiper-slide over footer">
+          <div class="footer-container">页脚</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -54,7 +61,7 @@ const modules = [FreeMode, Mousewheel];
   width: 100%;
   height: 100vh;
 }
-.home-swiper {
+.swiper {
   width: 100%;
   height: 100%;
 }
@@ -69,20 +76,15 @@ const modules = [FreeMode, Mousewheel];
 }
 .footer-container {
   width: 100%;
-  height: 300px;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 30px;
   background-color: #f83d4a;
 }
-.last-swiper {
-  height: 100%;
-  .swiper-slide {
-    height: calc(100% + 1px) !important;
-  }
-  .swiper-slide:last-child {
-    // height: auto !important;
-  }
+.footer {
+  width: 100%;
+  height: 300px !important;
 }
 </style>
