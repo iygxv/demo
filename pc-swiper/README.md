@@ -27,3 +27,6 @@
 ```
 
 出现的问题： 导致页脚页 一直占据一整页
+
+## 参考
+https://github.com/chenzhengqingzzz/GenShin3.0-Vue3-Vite-Swiper-8
